@@ -7,7 +7,6 @@ const profilePic = new Schema({
         type:mongoose.Schema.Types.ObjectId ,
         ref:Users || Employee,
     },
-
     profileImg:{
         type: String
     }

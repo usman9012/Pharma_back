@@ -4,12 +4,12 @@ const multer = require('multer')
 const path = require('path')
 const profilePic = require('../../models/profileImgModel')
 
-router.use(express.static(__dirname+"./public/"))
+const isLoggedIn = require('../../middlewares/isLoggedIn');
 
 let Storage = multer.diskStorage({
     destination:"./public/uploads",
     filename:(req, file , cb)=>{
-        cb(null, file.filename+"_"+Date.now()+path.extname(file.originalname))
+        cb(null, req.user.id+path.extname(file.originalname))
     }
 })
 
@@ -17,16 +17,6 @@ let upload = multer({
     storage: Storage
 }).single('file')
 
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        req.isLogged = true
-        return next();
-    }
-    else{
-        req.isLogged = false
-        return next()
-    }
-}
 router.get('/profilePic', isLoggedIn, function (req, res, next) {
     profilePic.findOne({_id: req.user }, (err, imgData) => { //change <USER_ID> appropiately
         if (err) {
@@ -37,12 +27,13 @@ router.get('/profilePic', isLoggedIn, function (req, res, next) {
     })
 })
 
+// Render upload pic form
+router.get('/uploadPic', (req, res)=>{
+    res.render('profilePic', {user: req.user, isLoggedIn: req.isLogged});
+})
 
-
-
-
-
-router.post('/profilePic',upload,  function (req, res, next){
+router.post('/profilePic', upload,  function (req, res, next){
+    console.log(req.file.fileName);
     let user = req.user
     let pic = profilePic({
         userId: user,

@@ -47,6 +47,7 @@ module.exports = app;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
@@ -71,7 +72,6 @@ app.use(flash())
 /**app.use((req, res, next)=>{
 
 })**/
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 // route use
@@ -80,15 +80,16 @@ app.use(logIn);
 app.use(login);
 app.use(signUp);
 app.use(medicine);
-app.use(employee)
-app.use(customerMenu)
-app.use(employeeMenu)
-app.use(logOut)
-app.use(index)
-app.use(allMedicine)
-app.use(deleteMedicine)
-app.use(orderMedicine)
-app.use(profile)
+app.use(employee);
+app.use(customerMenu);
+app.use(employeeMenu);
+app.use(logOut);
+app.use(index);
+app.use(allMedicine);
+app.use(deleteMedicine);
+app.use(orderMedicine);
+app.use(profile);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
