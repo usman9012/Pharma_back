@@ -1,29 +1,24 @@
-const express = require('express')
-const profilePic = require("../../models/profileImgModel");
-const router = express.Router()
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        req.isLogged = true
-        return next();
-    }
-    else{
-        req.isLogged = false
-        return next()
-    }
-}
-router.get('/customerMenu', isLoggedIn, function (req, res, next) {
-    profilePic.findOne({_id: req.user.id }, (err, imgData) => {
+
+const express = require('express');
+const router = express.Router();
+const profilePic = require('../../models/profileImgModel');
+
+const isLoggedIn = require('../../middlewares/isLoggedIn');
+
+
+router.get('/customerMenu', isLoggedIn, function (req, res) {
+    profilePic.findOne({userId: req.user.id }, (err, imgData) => {
         if (err) {
             console.log(err);
-        } else {
-            res.render('profilePic', {user: req.user, isLoggedIn: req.isLogged, image: imgData.profileImg});
+        }
+        else if (imgData == null || imgData == [] || imgData == undefined){
+            // User exists but with no image
+            return res.render('clientMenu', {user: req.user, isLoggedIn: req.isLogged, image:null});
+        }
+        else {
+            return res.render('clientMenu', {user: req.user, isLoggedIn: req.isLogged, image:imgData.profileImg});
         }
     })
 })
 
-
-router.get('/customerMenu', function (req, res, next){
-    res.render('clientMenu')
-})
-
-module.exports = router
+module.exports = router;
