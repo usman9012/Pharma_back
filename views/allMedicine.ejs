@@ -1,0 +1,33 @@
+<!Doctype Html>
+<html lang="en">
+<head>
+    <title>All Medicine</title>
+</head>
+<body>
+<table>
+    <tbody>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>power</th>
+        <th>quantity</th>
+    </tr>
+
+    <tr>
+<% for (let i =0; i<medicine.length; i++){%>
+        <td> <%= medicine[i].name%></td>
+        <td><%= medicine[i].price%></td>
+        <td> <%= medicine[i].power%></td>
+        <td><%= medicine[i].quantity%></td>
+
+        <td>
+            <img src="./uploads/<%= medicine[i].medicinePic%>" alt="pic"><br>
+        </td>
+    </tr>
+<%}%>
+    </tbody>
+</table>
+
+</body>
+
+</html>

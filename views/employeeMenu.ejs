@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <title>Home</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<p>Employee Menu</p>
+<% if(isLoggedIn){%>
+    <button><a href="/logout">log out</a> </button>
+    <button><a href="/medicine">Add new stock</a> </button>
+    <button><a href="/allMedicine">List Stock</a> </button>
+    <button><a href="/all-Medicine">Delete Stock</a> </button>
+
+
+
+<%}%>
+</body>
+</html>

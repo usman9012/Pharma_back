@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <title>Home</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<p>Customer Menu</p>
+<% if(isLoggedIn){%>
+    <button><a href="/logout">Log out</a> </button>
+    <button><a href="/order-Medicine">Order Medicine</a> </button>
+
+    <img src="/uploads/<%= user.profileImg%>" alt="profile pic">
+
+<%}else{%>
+    <button><a href="/login">login</a> </button>
+
+<%}%>
+</body>
+</html>

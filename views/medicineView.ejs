@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <title>Medicine</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/public/javascripts/bootstrap.min.js">
+</head>
+<body>
+
+    <form method="post">
+        <label for="name">Name
+            <input type="text" name="name" placeholder="Enter medicine name">
+        </label><br>
+        <label for="price">Price
+            <input type="number" name="price" placeholder="Enter medicine price" min="0">
+        </label><br>
+        <label for="power">power
+            <input type="text" name="power" placeholder="Enter medicine power">
+        </label><br>
+        <label for="quantity">Quantity
+            <input type="number" name="quantity" placeholder="Enter medicine Quantity" min="0">
+        </label><br>
+        <label for="expiryDate">Expiry Date
+            <input type="date" name="expiryDate">
+        </label><br>
+        <label>Upload Pic</label>
+            <input type="file" name="file">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
